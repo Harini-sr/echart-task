@@ -25,15 +25,21 @@ export class DynamicComponentComponent {
   lineChart!: echarts.EChartsCoreOption;
   barChart!: echarts.EChartsCoreOption;
 /*   pieChart!: echarts.EChartsCoreOption; */
-  result: any = [];
-  temp: any = [];
-  minTemp: any = [];
+  result: any;
+  temp:any; 
+  minTemp: any;
+  city: any;
   ngOnInit() {
     this.service.getData().subscribe((res: any) => {
-      this.result = res.daily.time;
-      this.temp = res.daily.temperature_2m_max;
-      this.minTemp = res.daily.temperature_2m_min;
+      this.result = res;
       console.log(this.result);
+      this.city = res.map((item: any) => item.city);
+      this.temp = res.map((item: any) => item.maxTemperature);
+      this.minTemp = res.map((item: any) => item.minTemperature);
+      console.log(this.city);
+      
+      console.log(this.minTemp);
+      console.log(this.temp);
 
       this.lineOption();
       this.barOption();
@@ -45,7 +51,7 @@ export class DynamicComponentComponent {
     this.lineChart = {
       xAxis :{
         type: 'category',
-        data: this.result,
+        data: this.city,
     
       },
       yAxis:{
@@ -66,7 +72,7 @@ export class DynamicComponentComponent {
     this.barChart = {
       xAxis :{
         type: 'category',
-        data: this.result,
+        data: this.city,
     
       },
       yAxis:{

@@ -26,7 +26,7 @@ export class SelectChartComponent {
     this.setChart('line'); 
   }
   
-  changeTime(event: any) {
+  changeChart(event: any) {
     const type = event.target.value;
     this.setChart(type);
   }

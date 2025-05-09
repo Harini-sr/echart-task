@@ -1,0 +1,12 @@
+<div class="container">
+ <label class="form-label text-danger">select chart</label>
+ <select class="form-select" (change)="changeChart($event)">
+    <option value="line">Line Chart</option>
+    <option value="bar">Bar Chart</option>
+    <option value="pie">Pie Chart</option>
+    <option value="doughnut">Doughnut Chart</option>
+ </select>
+
+ <div  echarts [options]="lineChart" class="chart"></div>
+</div>
+

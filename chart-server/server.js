@@ -3,11 +3,12 @@ const app = express();
 const cors = require('cors');
 const path = require('path');
 
-const port = 3200;
+const port = process.env.PORT || 3200;
 
 
-  
 app.use(cors());
+
+
 
 const indiaWeather = [
   { city: 'Chennai', maxTemperature: 36, minTemperature: 28 },
@@ -26,6 +27,8 @@ const indiaWeather = [
 app.get('/api/india-weather', (req, res) => {
   res.json(indiaWeather);
 });
+
+
 
 app.listen(port, () => {
   console.log(`India Weather API running at http://localhost:${port}`);
